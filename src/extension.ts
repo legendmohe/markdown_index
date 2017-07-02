@@ -50,14 +50,18 @@ export function activate(context: vscode.ExtensionContext) {
 export function deactivate() {
 }
 
-function addPrefix(line: string, prefix: string, mark_count: number) {
+function addPrefix(line: string, prefix: string, markCount: number) {
     // remove previous index
+    var markIndex = line.indexOf("#");
+    if (markIndex == -1) {
+        markIndex = 0;
+    }
     line = line.replace(/\s*((\d\.?)+)\s*/g, "");
-    return line.substr(0, mark_count).trim()
+    return line.substr(0, markIndex + markCount)
         + " "
         + prefix
         + " "
-        + line.substr(mark_count).trim();
+        + line.substr(markIndex + markCount).trim();
 }
 
 function countStartsWith(fliter, chars: string[]): number {
@@ -77,10 +81,11 @@ function addIndex(content: string[], lastMarkCount:number, prefix: string, curso
     // count #
     var targetMarkCount = 0;
     while (cursor < content.length) {
-        if (content[cursor].startsWith("#")) {
+        var line = content[cursor].trim();
+        if (line.startsWith("#")) {
             targetMarkCount = countStartsWith(
                 function (x) { return x == "#" },
-                content[cursor].split("")
+                line.split("")
             );
             break;
         } else {
@@ -90,10 +95,9 @@ function addIndex(content: string[], lastMarkCount:number, prefix: string, curso
 
     var seq = 1;
     while (cursor < content.length) {
-        var line = content[cursor];
         var markCount = countStartsWith(
             function (x) { return x == "#" },
-            line.split("")
+            content[cursor].trim().split("")
         );
         if (markCount == targetMarkCount && markCount > lastMarkCount) {
             var curPrefix = prefix + seq + ".";

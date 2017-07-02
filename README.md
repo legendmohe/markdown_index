@@ -1,65 +1,48 @@
-# legendmohe README
+# markdown_index
 
-This is the README for your extension "legendmohe". After writing up a brief description, we recommend including the following sections.
+markdown_index是一个可以为你的markdown标题添加序号的插件。
 
-## Features
+假设原文如下所示：
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+    # a
+    foolbar
 
-For example if there is an image subfolder under your extension project workspace:
+    ## a-b
+    foolbar
 
-\!\[feature X\]\(images/feature-x.png\)
+    ## a-c
+    foolbar
+    foolbar
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+    ### a-c-d
+    foolbar
 
-## Requirements
+    ## a-e
+    foolbar
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+    # f
+    foolbar
 
-## Extension Settings
+安装markdown_index，运行 `> markdown add index`，即可自动添加序号，如下所示：
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+    # 1. a
+    foolbar
 
-For example:
+    ## 1.1. a-b
+    foolbar
 
-This extension contributes the following settings:
+    ## 1.2. a-c
+    foolbar
+    foolbar
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+    ### 1.2.1. a-c-d
+    foolbar
 
-## Known Issues
+    ## 1.3. a-e
+    foolbar
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+    # 2. f
+    foolbar
 
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+注：重复运行命令可以自动更新序号。
+注：仅对“#”标记的标题等级有效。
