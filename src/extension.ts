@@ -9,7 +9,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "legendmohe" is now active!');
+    // console.log('Congratulations, your extension "legendmohe" is now active!');
 
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with  registerCommand
@@ -23,23 +23,20 @@ export function activate(context: vscode.ExtensionContext) {
             return; // No open text editor
         }
 
-        var useSelection: boolean = true;
         var selection = editor.selection;
         var text = editor.document.getText(selection);
+        var lines: string[];
         if (text.length == 0) {
-            text = editor.document.getText();
-            useSelection = false;
+            // use all text if no selection
+            lines = editor.document.getText().split("\n");
+            selection = new vscode.Selection(0, 0, lines.length, 0);
+        } else {
+            lines = text.split("\n");
         }
-
-        var src: string[] = text.split("\n");
-        addMarkdownIndex(src);
+        addMarkdownIndex(lines);
         editor.edit(function (builder: vscode.TextEditorEdit) {
-            var resultText = src.join("\n");
-            if (useSelection) {
-                builder.replace(new vscode.Range(selection.start, selection.end), resultText);
-            } else {
-                builder.replace(new vscode.Range(0, 0, src.length, 0), resultText);
-            }
+            var resultText = lines.join("\n");
+            builder.replace(new vscode.Range(selection.start, selection.end), resultText);
         })
     });
 
@@ -77,8 +74,8 @@ function countStartsWith(fliter, chars: string[]): number {
     return count;
 }
 
-function addIndex(content: string[], lastMarkCount:number, prefix: string, cursor: number): number {
-    // count #
+function addIndex(content: string[], lastMarkCount: number, prefix: string, cursor: number): number {
+    // leave the normal line and count #
     var targetMarkCount = 0;
     while (cursor < content.length) {
         var line = content[cursor].trim();
