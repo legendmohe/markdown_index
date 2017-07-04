@@ -46,3 +46,6 @@ markdown_index是一个可以为你的markdown标题添加序号的插件。
 
 注：重复运行命令可以自动更新序号。
 注：仅对“#”标记的标题等级有效。
+
+github: [https://github.com/legendmohe/markdown_index](https://github.com/legendmohe/markdown_index)
+email: legendmohe@foxmail.com
