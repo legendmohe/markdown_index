@@ -15,12 +15,21 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [
-            {
-                "command": "extension.addMarkdownIndex",
-                "title": "markdown add index"
+        "commands": [{
+            "command": "extension.addMarkdownIndex",
+            "title": "markdown add index"
+        }],
+        "configuration": {
+            "type": "object",
+            "title": "Markdown Index configuration",
+            "properties": {
+                "markdownIndex.indexBase": {
+                    "type": "string",
+                    "default": "#",
+                    "description": "Customize the number of '#' which the index will be built based on,  only supporting '#' and '##'."
+                }
             }
-        ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
@@ -29,10 +38,10 @@
         "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
+        "@types/mocha": "^2.2.48",
+        "@types/node": "^6.0.96",
         "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+        "typescript": "^2.7.1",
+        "vscode": "^1.1.10"
     }
 }
