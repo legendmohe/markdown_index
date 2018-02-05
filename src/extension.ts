@@ -2,6 +2,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
+import { MarkdownIndex } from './MarkdownIndex';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -33,7 +34,11 @@ export function activate(context: vscode.ExtensionContext) {
         } else {
             lines = text.split("\n");
         }
-        addMarkdownIndex(lines);
+
+        // apply plugin
+        const markdownIndex = new MarkdownIndex();
+        markdownIndex.addMarkdownIndex(lines);
+
         editor.edit(function (builder: vscode.TextEditorEdit) {
             var resultText = lines.join("\n");
             builder.replace(new vscode.Range(selection.start, selection.end), resultText);
@@ -45,74 +50,4 @@ export function activate(context: vscode.ExtensionContext) {
 
 // this method is called when your extension is deactivated
 export function deactivate() {
-}
-
-function addPrefix(line: string, prefix: string, markCount: number) {
-    // remove previous index
-    var markIndex = line.indexOf("#");
-    if (markIndex == -1) {
-        markIndex = 0;
-    }
-    line = line.replace(/\s*((\d\.?)+)\s*/g, "");
-    return line.substr(0, markIndex + markCount)
-        + " "
-        + prefix
-        + " "
-        + line.substr(markIndex + markCount).trim();
-}
-
-function countStartsWith(fliter, chars: string[]): number {
-    var count: number = 0;
-    chars.some(function (element) {
-        if (fliter(element)) {
-            count++;
-            return false;
-        } else {
-            return true;
-        }
-    })
-    return count;
-}
-
-function addIndex(content: string[], lastMarkCount: number, prefix: string, cursor: number): number {
-    // leave the normal line and count #
-    var targetMarkCount = 0;
-    while (cursor < content.length) {
-        var line = content[cursor].trim();
-        if (line.startsWith("#")) {
-            targetMarkCount = countStartsWith(
-                function (x) { return x == "#" },
-                line.split("")
-            );
-            break;
-        } else {
-            cursor++;
-        }
-    }
-
-    var seq = 1;
-    while (cursor < content.length) {
-        var markCount = countStartsWith(
-            function (x) { return x == "#" },
-            content[cursor].trim().split("")
-        );
-        if (markCount == targetMarkCount && markCount > lastMarkCount) {
-            var curPrefix = prefix + seq + ".";
-            content[cursor] = addPrefix(content[cursor], curPrefix, markCount);
-            seq++;
-            // deep first search
-            cursor = addIndex(content, markCount, curPrefix, cursor + 1);
-        } else if (markCount <= lastMarkCount) {
-            // rollback 1 row
-            cursor--;
-            break;
-        }
-        cursor++;
-    }
-    return cursor;
-}
-
-function addMarkdownIndex(content: string[]) {
-    addIndex(content, 0, "", 0);
-    return content;
 }

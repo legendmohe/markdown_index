@@ -18,9 +18,20 @@
         "commands": [
             {
                 "command": "extension.addMarkdownIndex",
-                "title": "markdown add index"
+                "title": "Markdown add index"
             }
-        ]
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "Markdown Index configuration",
+            "properties": {
+                "markdownIndex.indexBase": {
+                    "type": "string",
+                    "default": "#",
+                    "description": "Customize the indicator of your title line"
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
