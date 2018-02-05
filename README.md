@@ -1,11 +1,16 @@
-# markdown_index 
+# markdown_index
+
+UPDATE 2018/2/4: 
+- Fix issue [#2](https://github.com/legendmohe/markdown_index/issues/2).
+- Add configuration for index indocator.
+
+thanks to [firejq](https://github.com/firejq)
 
 ## Introduction(English Version) 
 
 markdown_index is an extension that can add serial numbers to your markdown title.
 
 Suppose the original text is as follows:
-
 
     # a
     foolbar
