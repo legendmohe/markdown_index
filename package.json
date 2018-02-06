@@ -1,9 +1,9 @@
 {
-    "name": "markdown-index",
-    "displayName": "markdown-index",
+    "name": "MarkdownIndex",
+    "displayName": "MarkdownIndex",
     "description": "add index automatically to your titie",
     "version": "0.0.3",
-    "publisher": "legendmohe",
+    "publisher": "firejq",
     "engines": {
         "vscode": "^1.13.0"
     },
@@ -43,5 +43,6 @@
         "mocha": "^2.3.3",
         "typescript": "^2.7.1",
         "vscode": "^1.1.10"
-    }
+    },
+    "repository": "https://github.com/firejq/markdown_index"
 }
