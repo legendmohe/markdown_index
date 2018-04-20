@@ -1,5 +1,8 @@
 # MarkdownIndex
 
+UPDATE 2018/4/20: 
+- Fix issue [#5](https://github.com/legendmohe/markdown_index/issues/5).
+
 UPDATE 2018/2/4: 
 - Fix issue [#2](https://github.com/legendmohe/markdown_index/issues/2).
 - Add configuration for index indocator.
