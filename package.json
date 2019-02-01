@@ -2,7 +2,7 @@
     "name": "markdown-index",
     "displayName": "markdown-index",
     "description": "add index automatically to your titie",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "publisher": "legendmohe",
     "engines": {
         "vscode": "^1.13.0"
@@ -51,7 +51,10 @@
         "url": "https://github.com/legendmohe/markdown_index.git"
     },
     "dependencies": {
+        "cryptiles": "^4.1.3",
+        "debug": "^4.1.1",
         "growl": "^1.10.5",
-        "minimatch": "^3.0.4"
+        "minimatch": "^3.0.4",
+        "url-parse": "^1.4.4"
     }
 }
