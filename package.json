@@ -2,7 +2,7 @@
     "name": "markdown-index",
     "displayName": "markdown-index",
     "description": "add index automatically to your titie",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "publisher": "legendmohe",
     "engines": {
         "vscode": "^1.13.0"
