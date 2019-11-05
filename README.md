@@ -1,5 +1,8 @@
 # MarkdownIndex
 
+UPDATE 2019/11/5: 
+- Fix issue [#8](https://github.com/legendmohe/markdown_index/issues/8).
+
 UPDATE 2019/2/1:
 - Fix Potential security vulnerability
 
