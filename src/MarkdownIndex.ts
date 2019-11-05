@@ -27,7 +27,8 @@ export class MarkdownIndex {
       if (markIndex == -1) {
           markIndex = 0;
       }
-      line = line.replace(/\s*((\d+\.)+)\s*/g, "");
+      var re = new RegExp('(^\\s*\\' + this._indexBase + '+)\\s*((\\d+\\.)+)\\s+', "g");
+      line = line.replace(re, "$1");
       return line.substr(0, markIndex + markCount)
           + " "
           + prefix
