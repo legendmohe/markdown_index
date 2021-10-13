@@ -55,6 +55,6 @@
         "debug": "^4.1.1",
         "growl": "^1.10.5",
         "minimatch": "^3.0.4",
-        "url-parse": "^1.5.0"
+        "url-parse": "^1.5.2"
     }
 }
